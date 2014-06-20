@@ -61,17 +61,10 @@ App.carousel = {
 		//listeners to keyboard
 		this.keyListerner();
 
-		//trasition listeners
-		this.flowControl();
-
 		disp.append(this.ul);
 		this.container.append(prev).append(disp).append(next);
 		this.ul.css("left", (parseInt(this.dispW) * -1));
 		this.container.find('ul li:first').before(this.container.find('ul li:last'));
-		var e;
-		// $('#slides li:first').before($('#slides li:last'));
-
-
 	},
 	controls : function(){},
 	keyListerner : function(){
@@ -83,12 +76,6 @@ App.carousel = {
 			else if(e.keyCode == 39) { // right
 				that.moveRight();
 			}
-		});
-	},
-	flowControl : function(){
-		var that = this;
-		this.ul.on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-			that.isAnimating = false;
 		});
 	},
 	moveRight : function(){

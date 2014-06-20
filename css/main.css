@@ -114,7 +114,7 @@ header {
 
 .main{
     display: block;
-    margin: 0 auto;
+    margin: 36px auto 0;
     max-width: 1300px;
     width: 100%;
 }
@@ -294,6 +294,66 @@ header {
 }
 #carousel ul li a{}
 
+/* nav  */
+.nav-links {
+    background: #004964;
+    color: #fff;
+    height: 60px;
+    overflow: hidden;
+}
+
+.nav-links ul {
+    margin: 0;
+}
+
+.nav-links .social {
+    float: right;
+    margin-right: 170px;
+}
+.nav-links .social a{
+    background: url(../img/social-sprite.png) top left no-repeat;
+    display: block;
+    height: 23px;
+    width: 23px;
+}
+.nav-links .social li{
+    padding: 0 4px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.nav-links .main-nav  {
+    float: left;
+    margin-left: 170px;
+}
+
+.nav-links li {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 18px;
+}
+
+.main-nav li a {
+    color: #fff;
+}
+
+ /* icons */
+.nav-links .social a.fb {
+    background-position: -31px 0px;
+}
+.nav-links .social a.yt {
+    background-position: -62px 0px;
+}
+.nav-links .social a.in {
+    background-position: -93px 0px;
+}
+.nav-links .social a.g {
+    background-position: -124px 0px;
+}
+.nav-links .social a.rs {
+    background-position: -155px 0px;
+}
 
 /* ==========================================================================
    Helper classes
