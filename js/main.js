@@ -9,6 +9,7 @@ App.carousel = {
 	dispH : 0,
 	slides :[],
 	actSlide : 0,
+	isAnimating : false,
 	init : function(options){
 		this.dispW = options.w;
 		this.dispH = options.h;
@@ -20,7 +21,6 @@ App.carousel = {
 		var that = this;
 		$.getJSON( json)
 		.done(function(data) {
-			console.log( "data -> ", data );
 			that.images = data;
 			that.render();
 		})
@@ -35,7 +35,6 @@ App.carousel = {
 			prev = $("<div id='prev'>"),
 			next = $("<div id='next'>");
 		
-
 		disp.css({
 			width : that.dispW,
 			height : that.dispH
@@ -56,7 +55,7 @@ App.carousel = {
 			this.slides.push(listItem);
 			this.ul.append(listItem);
 		};
-
+		//listerners to controls
 		prev.on('click', function(){
 			that.moveLeft();
 		});
@@ -64,14 +63,40 @@ App.carousel = {
 			that.moveRight();
 		});
 
+		//listeners to keyboard
+		this.keyListerner();
+
+		//trasition listeners
+		this.flowControl();
+
 		disp.append(this.ul);
 		this.container.append(prev).append(disp).append(next);
 
+
 	},
 	controls : function(){},
-	keyListerner : function(){},
-	flowControls : function(){},
+	keyListerner : function(){
+		var that = this;
+		$("body").keydown(function(e) {
+			if(e.keyCode == 37) { // left
+				that.moveLeft();
+			}
+			else if(e.keyCode == 39) { // right
+				that.moveRight();
+			}
+		});
+	},
+	flowControl : function(){
+		var that = this;
+		this.slides[0].on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+			that.isAnimating = false;
+		});
+	},
 	moveRight : function(){
+		if(this.isAnimating){
+			return;	
+		} 
+		this.isAnimating = true;
 		for(var ndx in this.slides){
 			var pos = parseInt(this.slides[ndx].css("left"));
 
@@ -79,6 +104,10 @@ App.carousel = {
 		}
 	},
 	moveLeft : function(){
+		if(this.isAnimating){
+			return;	
+		} 
+		this.isAnimating = true;
 		var maxLeft = (this.slides - 2) * parseInt(this.dispW),
 			fixer = pos - parseInt(this.dispW);
 		for(var ndx in this.slides){
