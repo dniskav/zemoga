@@ -11,8 +11,8 @@ App.carousel = {
 	actSlide : 0,
 	isAnimating : false,
 	init : function(options){
-		this.dispW = options.w;
-		this.dispH = options.h;
+		this.dispW = parseInt(options.w);
+		this.dispH = parseInt(options.h);
 		this.container = $("#carousel");
 		this.loadImages(options.json);
 		this.ul = $("<ul>");
@@ -45,11 +45,6 @@ App.carousel = {
 				image = $("<img>");
 
 			listItem.attr("data-slide", ndx);
-			if(ndx >= this.images.length - 1){
-				listItem.css("left", parseInt(this.dispW) * -1);
-			}else{
-				listItem.css("left", parseInt(this.dispW) * ndx);
-			}
 			image.attr("src", this.images[ndx]);
 			listItem.append(image)
 			this.slides.push(listItem);
@@ -71,6 +66,10 @@ App.carousel = {
 
 		disp.append(this.ul);
 		this.container.append(prev).append(disp).append(next);
+		this.ul.css("left", (parseInt(this.dispW) * -1));
+		this.container.find('ul li:first').before(this.container.find('ul li:last'));
+		var e;
+		// $('#slides li:first').before($('#slides li:last'));
 
 
 	},
@@ -88,36 +87,37 @@ App.carousel = {
 	},
 	flowControl : function(){
 		var that = this;
-		this.slides[0].on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
+		this.ul.on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
 			that.isAnimating = false;
 		});
 	},
 	moveRight : function(){
+		var that = this,
+			pos = (parseInt(this.ul.css("left")) - this.dispW);
+		
 		if(this.isAnimating){
 			return;	
 		} 
 		this.isAnimating = true;
-		for(var ndx in this.slides){
-			var pos = parseInt(this.slides[ndx].css("left"));
-
-			this.slides[ndx].css("left", pos + parseInt(this.dispW));
-		}
+		this.ul.animate({left : pos}, 200,function(){
+			that.ul.css('left', that.dispW * -1);
+			that.container.find('ul li:last').before(that.container.find('ul li:first'));
+			that.isAnimating = false;
+		});
 	},
 	moveLeft : function(){
+		var that = this,
+			pos = (parseInt(this.ul.css("left")) + this.dispW);
+		
 		if(this.isAnimating){
 			return;	
 		} 
 		this.isAnimating = true;
-		var maxLeft = (this.slides - 2) * parseInt(this.dispW),
-			fixer = pos - parseInt(this.dispW);
-		for(var ndx in this.slides){
-			var pos = parseInt(this.slides[ndx].css("left"));
-			if(pos - fixer < maxLeft){
-				this.slides[ndx].css("left", pos - parseInt(this.dispW));
-			}else{
-				this.slides[ndx].css("left", pos - parseInt(this.dispW));
-			}
-		}
+		this.ul.animate({left : pos}, 200,function(){
+			that.ul.css('left', that.dispW * -1);
+			that.container.find('ul li:first').before(that.container.find('ul li:last'));
+			that.isAnimating = false;
+		});
 	}
 }
 

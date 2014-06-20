@@ -283,19 +283,14 @@ header {
 }
 #carousel ul{
     display: table;
+    left: 0;
     list-style: none;
-    padding: 0;
     margin: 0;
-    position: relative;
+    padding: 0;
+    position: absolute;
 }
 #carousel ul li{
     display: table-cell;
-    -webkit-transition: left 200ms ease-out;
-    -moz-transition: left 200ms ease-out;
-    -ms-transition: left 200ms ease-out;
-    -o-transition: left 200ms ease-out;
-    position: absolute;
-    transition: left 200ms ease-out;
 }
 #carousel ul li a{}
 
