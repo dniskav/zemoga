@@ -253,7 +253,30 @@ header {
 }
 
 /* carousel styles */
-#carousel{}
+#prev {
+    background: url(../img/prev.png) center right no-repeat;
+    width: 46px;
+    height: 470px;
+    position: relative;
+    cursor: pointer;
+}
+
+#next {
+    background: url(../img/next.png) center right no-repeat;
+    width: 46px;
+    height: 470px;
+    position: relative;
+    cursor: pointer;
+}
+#carousel{
+    text-align: center;
+}
+
+#carousel > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
 #carousel .frame{
     overflow: hidden;
     position: relative;

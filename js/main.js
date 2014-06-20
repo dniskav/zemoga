@@ -31,7 +31,9 @@ App.carousel = {
 	},
 	render : function(){
 		var that = this;
-			disp = $("<div class='frame'>");
+			disp = $("<div class='frame'>"),
+			prev = $("<div id='prev'>"),
+			next = $("<div id='next'>");
 		
 
 		disp.css({
@@ -53,10 +55,17 @@ App.carousel = {
 			listItem.append(image)
 			this.slides.push(listItem);
 			this.ul.append(listItem);
-		}
+		};
+
+		prev.on('click', function(){
+			that.moveLeft();
+		});
+		next.on('click', function(){
+			that.moveRight();
+		});
 
 		disp.append(this.ul);
-		this.container.append(disp);
+		this.container.append(prev).append(disp).append(next);
 
 	},
 	controls : function(){},
