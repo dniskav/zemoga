@@ -97,16 +97,22 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-
-body{
+ 
+body {
     font-family: 'Hammersmith One', sans-serif;
+}
+
+body * {
+    box-sizing: border-box;
 }
 
 a {
     text-decoration: none;
 }
-ul{
+ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 header {
@@ -118,14 +124,14 @@ header {
     font-weight: 800;
 }
 
-.main{
+.main {
     display: block;
     margin: 36px auto 0;
     max-width: 1300px;
     width: 100%;
 }
 
-.logo, .search-form, .header-nav{
+.logo, .search-form, .header-nav {
     display: inline-block;
     vertical-align: top;
 }
@@ -214,8 +220,7 @@ header {
 
 /* bubbles */
 
-.bubble:after 
-{
+.bubble:after {
     content: '';
     position: absolute;
     border-style: solid;
@@ -228,8 +233,7 @@ header {
     left: 22px;
 }
 
-.bubble:before 
-{
+.bubble:before {
     content: '';
     position: absolute;
     border-style: solid;
@@ -291,7 +295,7 @@ header {
     overflow: hidden;
     position: relative;
 }
-#carousel ul{
+#carousel ul {
     display: table;
     left: 0;
     list-style: none;
@@ -299,10 +303,10 @@ header {
     padding: 0;
     position: absolute;
 }
-#carousel ul li{
+#carousel ul li {
     display: table-cell;
 }
-#carousel ul li a{}
+#carousel ul li a {}
 
 /* nav  */
 .nav-links {
@@ -320,13 +324,13 @@ header {
     float: right;
     margin-right: 170px;
 }
-.nav-links .social a{
+.nav-links .social a {
     background: url(../img/social-sprite.png) top left no-repeat;
     display: block;
     height: 23px;
     width: 23px;
 }
-.nav-links .social li{
+.nav-links .social li {
     padding: 0 4px;
     display: table-cell;
     vertical-align: middle;
@@ -430,6 +434,7 @@ footer {
     display: table;
     max-width: 1080px;
     margin: 0 auto;
+    padding-top: 30px;
     width: 100%;
 }
 
@@ -437,18 +442,40 @@ footer {}
 /* cols 6 */
 .cols-6 {
     display: table-cell;
+    width: 17.6%;
+}
+
+.footer-title {
+    font: 400 20px klavika_rgregular;
+    color: #16a5c7;
+    display: block;
+    border-bottom: 1px solid #666;
+    padding-bottom: 16px;
+}
+
+.menu-list li {
+    padding: 10px 0;
+}
+
+.menu-list li {
+    padding: 10px 0;
+}
+
+.menu-list a {
+    font: 400 14px 'myriad pro';
+    color: #707070;
 }
 
 .copyright {
-    color: #fff;
     background: #494949;
-    text-align: center;
-    height: 56px;
-    display: block;
-    width: 100%;
-    line-height: 56px;
     border: 1px solid #7f7f7f;
+    color: #fff;
+    display: block;
     font: 400 14px/56px "myriad pro";
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    width: 100%;
 }
 
 /* ==========================================================================
