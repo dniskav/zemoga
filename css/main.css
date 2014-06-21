@@ -105,11 +105,17 @@ body{
 a {
     text-decoration: none;
 }
+ul{
+    list-style: none;
+}
 
 header {
     width: 960px;
     display: block;
     margin: 0 auto;
+}
+.bold {
+    font-weight: 800;
 }
 
 .main{
@@ -272,11 +278,15 @@ header {
     text-align: center;
 }
 
-#carousel > div {
-    display: inline-block;
-    vertical-align: top;
+.carousel-wrapper {
+    display: table;
+    margin: 0 auto;
 }
 
+.carousel-wrapper > div {
+    display: table-cell;
+    vertical-align: top;
+}
 #carousel .frame{
     overflow: hidden;
     position: relative;
@@ -353,6 +363,92 @@ header {
 }
 .nav-links .social a.rs {
     background-position: -155px 0px;
+}
+
+
+/* main content */
+.main-content {
+    padding: 26px 0;
+}
+
+.cols-wrapper {
+    display: table;
+    margin: 0 auto;
+    width: 1150px;
+}
+
+.cols-wrapper h2 {
+    color: #004964;
+    font: 400 30px klavika_rgregular;
+    margin: 0;
+    padding: 0 0 22px;
+    text-align: center;
+}
+
+.cols-wrapper .cols-3 {
+    border-right: 1px solid #ccc;
+    display: table-cell;
+    height: 300px;
+    width: 350px;
+}
+
+.cols-wrapper .cols-3:last-child {
+    border: none;
+}
+
+
+.cols-3 section {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.cols-3 p {
+    color: #004964;
+    display: block;
+    font: 400 14px calibri;
+    margin: 0 auto;
+    max-width: 80%;
+    text-align: center;
+}
+
+/* see it */
+.see-it p,
+.try-it p {
+    color: #666;
+}
+
+.see-it .bold {
+    color: #004964;
+}
+
+/* footer */
+footer {
+    background: #eee;
+}
+
+.footer-menu {
+    display: table;
+    max-width: 1080px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+footer {}
+/* cols 6 */
+.cols-6 {
+    display: table-cell;
+}
+
+.copyright {
+    color: #fff;
+    background: #494949;
+    text-align: center;
+    height: 56px;
+    display: block;
+    width: 100%;
+    line-height: 56px;
+    border: 1px solid #7f7f7f;
+    font: 400 14px/56px "myriad pro";
 }
 
 /* ==========================================================================
@@ -462,8 +558,16 @@ header {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
+@media only screen and (max-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
+}
+
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px)  { 
+    #carousel ul li img{
+        width: 800px;
+    }
 }
 
 @media print,

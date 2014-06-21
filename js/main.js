@@ -2,19 +2,16 @@ var App = window.App || {}
 
 App.carousel = {
 	images : [],
-	controls : {},
 	container : {},
 	ul : {},
 	dispW : 0,
 	dispH : 0,
 	slides :[],
-	actSlide : 0,
 	isAnimating : false,
 	init : function(options){
-		this.dispW = parseInt(options.w);
-		this.dispH = parseInt(options.h);
 		this.container = $("#carousel");
 		this.loadImages(options.json);
+		//setup the dimensions
 		this.ul = $("<ul>");
 	},
 	loadImages : function(json){
@@ -22,7 +19,11 @@ App.carousel = {
 		$.getJSON( json)
 		.done(function(data) {
 			that.images = data;
-			that.render();
+			$('<img/>').attr('src',data[0]).load(function(){ 
+				that.dispW = this.width;
+				that.dispH = this.height;
+				that.render();
+			});
 		})
 		.fail(function() {
 			console.log( "error" );
@@ -30,15 +31,12 @@ App.carousel = {
 
 	},
 	render : function(){
-		var that = this;
+		var that = this,
+			wrapper = $("<div class='carousel-wrapper'>"),
 			disp = $("<div class='frame'>"),
 			prev = $("<div id='prev'>"),
 			next = $("<div id='next'>");
 		
-		disp.css({
-			width : that.dispW,
-			height : that.dispH
-		});
 
 		for(var ndx in this.images){
 			var listItem = $("<li>"),
@@ -62,8 +60,16 @@ App.carousel = {
 		this.keyListerner();
 
 		disp.append(this.ul);
-		this.container.append(prev).append(disp).append(next);
+		wrapper.append(prev).append(disp).append(next);
+		this.container.append(wrapper);
 		this.ul.css("left", (parseInt(this.dispW) * -1));
+
+		disp.css({
+			width : that.dispW,
+			height : that.dispH
+		});
+
+		wrapper.css('width', prev.width() + next.width() + disp.width());
 		this.container.find('ul li:first').before(this.container.find('ul li:last'));
 	},
 	controls : function(){},
