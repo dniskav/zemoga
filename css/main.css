@@ -111,8 +111,6 @@ a {
 }
 ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 header {
@@ -153,7 +151,8 @@ header {
     max-height: 1000%;
 }
 
-.header-nav a {
+.header-nav a,
+.header-nav label {
     color: #004964;
     display: table-cell;
     font-size: 20px;
@@ -161,6 +160,13 @@ header {
     text-transform: uppercase;
     vertical-align: middle;
     white-space: nowrap;
+}
+.header-nav label {
+    display: none;
+}
+
+.header-nav input[type="checkbox"] {
+    display: none;
 }
 
 .nav-content {
@@ -449,8 +455,13 @@ footer {}
     font: 400 20px klavika_rgregular;
     color: #16a5c7;
     display: block;
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid #c1c1c1;
     padding-bottom: 16px;
+}
+
+.menu-list ul {
+    margin: 0;
+    padding: 0 30px 0 0;
 }
 
 .menu-list li {
@@ -585,16 +596,168 @@ footer {}
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (max-width: 35em) {
+@media only screen and (max-width: 900px) {
     /* Style adjustments for viewports that meet the condition */
+    .hero {
+        display: none;
+    }
+    .logo {
+        margin-left: 20px;
+    }
+    .header-nav {
+        width: auto;
+    }
+    .header-nav > ul > li {
+        margin-left: 20px;
+    }
+    .nav-links .main-nav {
+        margin-left: 10px;
+    }
+    .nav-links .social {
+        margin-right: 20px;
+    }
+    .nav-links li {
+        padding: 0 10px;
+    }
+    form.search-form {
+        float: none;
+        margin-left: 10px;
+    }
+    .cols-wrapper .cols-3 {
+        display: inline-block;
+        border: none;
+    }
+    .cols-wrapper {
+        display: block;
+        width: 710px;
+    }
+    .cols-6 ul, .menu-list .footer-title {
+        width: 10%;
+        padding-left: 20px;
+        border: none;
+    }
+    .nav-links .main-nav > ul {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 700px;
+        position: relative;
+        padding: 0;
+    }
+    .footer-menu{
+        width: 98%;
+    }
+    .menu-list li{
+        padding: 2px 0;
+    }
+    .menu-list li a {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+    .header-nav label{
+        display: table-cell;
+    }
+    .mobile-menu-trigger + a  {
+        display: none;
+    }
+    .mobile-menu-trigger:checked + a + .nav-content {
+        max-height: 10000%;
+    }
+
+}
+@media only screen and (max-width: 480px) {
+    header{
+        width: auto;
+    }
+    .logo, 
+    .search-form, 
+    .header-nav{
+        display: block;
+        float: none;
+        text-align: center;
+    }
+    .header-nav > ul{
+        display: block;
+        width: 100%;
+    }
+    .header-nav label,
+    .header-nav a{
+        display: block;
+        height: inherit;
+        width: 100%;
+    }
+    .header-nav > ul > li {
+        margin-left: 22px;
+    }
+    .nav-content {
+            -webkit-transition: none;
+        -moz-transition: none;
+        -ms-transition: none;
+        -o-transition: none;
+        transition: none;
+    }
+    .nav-content ul {
+        margin: 0 0 10px;
+    }
+    .header-nav input[type="checkbox"] + a{
+        display: none;
+    }
+    .header-nav > ul > li{
+        display: block;
+        height: inherit;
+        margin: 0;
+    }
+    .search-form {
+        padding: 10px;
+        margin: 0;
+    }
+    .nav-links {
+        height: inherit;
+        padding: 10px;
+    }
+
+    .nav-links li {
+        display: block;
+        height: 22px;
+        line-height: inherit;
+    }
+    .nav-links .main-nav {
+        float: none;
+        display: block;
+        margin: 0;
+        text-align: center;
+    }
+    .nav-links .social {
+        float: none;
+        margin: 0 auto;
+    }
+    .social ul {
+        margin: 0 auto;
+        padding: 10px 0 0;
+        width: 64%;
+    }
+    .mobile-menu-trigger:checked + a + .nav-content {
+        display: block;
+        position: relative;
+    }
+    .bubble:before,
+    .bubble:after {
+        content: none;
+    }
+    .cols-wrapper {
+        width: auto;
+    }
+    .cols-wrapper .cols-3 {
+        display: block;
+        margin: 0 auto;
+    }
+    .footer-menu{
+        display: none;
+    }
 }
 
 @media only screen 
 and (min-width : 768px) 
 and (max-width : 1024px)  { 
-    #carousel ul li img{
-        width: 800px;
-    }
 }
 
 @media print,
